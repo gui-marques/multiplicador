@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="/logoslay.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch ySLAYONx || Multiplicar Nomes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0d9ff3, #012483);
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #043e64;
+        }
+        p {
+            color: #043e64;
+        }
+        #container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+        }
+       .logo{
+        width: 100px;
+       }
+       .twitch{
+        width: 20px;
+       }
+       h3{
+        color: #0040FF;
+       }
+       .nome{
+        margin-top: -1px;
+       }
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #resultado-container {
+            text-align: left;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #2980b9;
+            border-radius: 12px;
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        #resultado {
+            margin: 0;
+            color: #000;
+        }
+
+        #copiarTodosTopo {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #copiarTodosTopo:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+       
+        <img class='logo' src='./logoslay.svg' alt=""/>
+        <h1 class="nome">ySLAYONx</h1>
+        <h1>Multiplicar Nomes</h1>
+        <p>Insira o nome e a quantidade no formato NICK : (QUANTIDADE)</p>
+        <textarea id="input" placeholder="Ex: yslayonx :3"></textarea>
+        <button onclick="multiplicarNomes()">Calcular</button>
+        <button id="copiarTodosTopo" onclick="copiarTodos()">Copiar Todos</button>
+        <div class="">            
+            <h3>Me siga! twitch.tv/yslayonx</h3>
+
+        </div>
+        <div id="resultado-container">
+            <p id="resultado"></p>
+            <button onclick="selecionarTodos()">Selecionar Todos</button>
+            <!-- O botão "Copiar Todos" foi removido desta posição -->
+        </div>
+    </div>
+
+    <script>
+        function multiplicarNomes() {
+            var inputElement = document.getElementById("input");
+            var resultadoElement = document.getElementById("resultado");
+
+            var entradas = inputElement.value.split('\n');
+            var resultado = "";
+
+            for (var i = 0; i < entradas.length; i++) {
+                var partes = entradas[i].split(':');
+                
+                if (partes.length === 2 && !isNaN(partes[1].trim())) {
+                    var nick = partes[0].trim();
+                    var quantidade = parseInt(partes[1].trim());
+
+                    // Adiciona cada linha com o nome multiplicado
+                    for (var j = 0; j < quantidade; j++) {
+                        resultado += nick + "<br>";
+                    }
+                } else {
+                    resultado += "Entrada inválida na linha " + (i + 1) + ". Certifique-se de usar o formato correto.<br>";
+                }
+            }
+
+            resultadoElement.innerHTML = resultado;
+        }
+
+        function selecionarTodos() {
+            var resultadoElement = document.getElementById("resultado");
+
+            // Seleciona todo o conteúdo dentro do elemento p
+            var range = document.createRange();
+            range.selectNodeContents(resultadoElement);
+
+            var selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+
+        function copiarTodos() {
+            var resultadoElement = document.getElementById("resultado");
+
+            // Seleciona todo o conteúdo dentro do elemento p
+            var range = document.createRange();
+            range.selectNodeContents(resultadoElement);
+
+            var selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            // Copia o conteúdo selecionado para a área de transferência
+            document.execCommand("copy");
+
+            // Limpa a seleção
+            selection.removeAllRanges();
+
+            alert("Nomes copiados para a área de transferência!");
+        }
+    </script>
+</body>
+</html>
