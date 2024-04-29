@@ -1,116 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" type="image/x-icon" href="/logoslay.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="/logo-lobo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitch ySLAYONx || Multiplicar Nomes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #0d9ff3, #012483);
-            color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        h1 {
-            color: #043e64;
-        }
-        p {
-            color: #043e64;
-        }
-        #container {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            display: inline-block;
-        }
-       .logo{
-        width: 100px;
-       }
-       .twitch{
-        width: 20px;
-       }
-       h3{
-        color: #0040FF;
-       }
-       .nome{
-        margin-top: -1px;
-       }
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
-
-        button {
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-right: 5px;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        #resultado-container {
-            text-align: left;
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #2980b9;
-            border-radius: 12px;
-            display: inline-block;
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
-        #resultado {
-            margin: 0;
-            color: #000;
-        }
-
-        #copiarTodosTopo {
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        #copiarTodosTopo:hover {
-            background-color: #2980b9;
-        }
-    </style>
 </head>
+
 <body>
+    <div class="rains-container">
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+    </div>
     <div id="container">
-       
-        <img class='logo' src='./logoslay.svg' alt=""/>
+        <img class='logo' src='./logo-lobo.png' alt="" />
         <h1 class="nome">ySLAYONx</h1>
         <h1>Multiplicar Nomes</h1>
         <p>Insira o nome e a quantidade no formato NICK : (QUANTIDADE)</p>
         <textarea id="input" placeholder="Ex: yslayonx :3"></textarea>
         <button onclick="multiplicarNomes()">Calcular</button>
         <button id="copiarTodosTopo" onclick="copiarTodos()">Copiar Todos</button>
-        <div class="">            
-            <h3>Me siga! twitch.tv/yslayonx</h3>
-
+        <div class="social">
+        <h3>Redes Sociais</h3>
+          <a href="https://www.twitch.tv/yslayonx" target="_blank">
+                <img  src="./ico.gif" alt=""/>
+                
+            </a>
+            <a href="https://instagram.com/yslayonx" target="_blank">
+                <img  src="./insta.gif" alt=""/>                
+            </a>
         </div>
         <div id="resultado-container">
             <p id="resultado"></p>
@@ -120,6 +60,16 @@
     </div>
 
     <script>
+        const rains = document.querySelectorAll(".rain");
+        const getRandomNumber = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        rains.forEach(rain => {
+            rain.style = `--rain-delay:${getRandomNumber(0, 1000)}ms`;
+        })
+
+
+
         function multiplicarNomes() {
             var inputElement = document.getElementById("input");
             var resultadoElement = document.getElementById("resultado");
@@ -129,7 +79,7 @@
 
             for (var i = 0; i < entradas.length; i++) {
                 var partes = entradas[i].split(':');
-                
+
                 if (partes.length === 2 && !isNaN(partes[1].trim())) {
                     var nick = partes[0].trim();
                     var quantidade = parseInt(partes[1].trim());
@@ -179,4 +129,5 @@
         }
     </script>
 </body>
+
 </html>
